@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'description', 'phone', 'mobile_phone', 'slug'
+    ];
+
     /**
      * Ligação 1:1 com User (uma loja pertence a user)
      */

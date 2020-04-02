@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'description', 'body', 'price', 'slug'
+    ];
+
     /**
      * Ligação de 1:N (um pra muitos entre produtos e loja)
      */
@@ -22,5 +32,5 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    
+
 }
