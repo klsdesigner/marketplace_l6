@@ -14,4 +14,13 @@ class Product extends Model
         return $this->belongsTo(Store::class);
     }
 
+    /**
+     * Ligação de N:N (muitos para muitos) entre produtos e category
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    
 }

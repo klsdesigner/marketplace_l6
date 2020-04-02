@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Routing\Route;
+ //use Illuminate\Routing\Route;
+ 
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,10 +57,10 @@ Route::get('/model', function () {
     // ]); 
     
     //MASS UPDATE
-    $user = \App\User::find(21);
-    $user->update([
-        'name' => 'Kleber de Souza atualizado'
-    ]); // retorna true ou false 
+    // $user = \App\User::find(21);
+    // $user->update([
+    //     'name' => 'Kleber de Souza atualizado'
+    // ]); // retorna true ou false 
 
 
     return \App\User::all();
