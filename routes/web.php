@@ -62,6 +62,16 @@ Route::get('/model', function () {
     //     'name' => 'Kleber de Souza atualizado'
     // ]); // retorna true ou false 
 
+    //return \App\User::all();
 
-    return \App\User::all();
+    //Pegando uma store de um determinado Usuario
+   // $user = \App\User::find(5);
+   // return $user->store;
+
+    //Pegar os produtos de uma loja
+    //$loja = \App\Store::find(1);
+    //return $loja->products; // $loja->products()->where('id', 9)->get(); 
+
+    //Pegar as lojas de categorias 
+
 });
