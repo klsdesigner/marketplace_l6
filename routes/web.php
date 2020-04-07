@@ -101,3 +101,5 @@ Route::get('/model', function () {
 
     return \App\Category::all();      
 });
+
+Route::get('/admin/stores', 'Admin\\StoreController@index');
