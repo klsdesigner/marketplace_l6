@@ -11,7 +11,8 @@
 |
 */
  //use Illuminate\Routing\Route;
- 
+
+use App\Product;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,29 +50,54 @@ Route::get('/model', function () {
     *** MASS ASSIGNMENT - ATIBUIÇÃO EM MASSA ****
     *********************************************
     */
-    //Metodo create
+    /** Metodo create */
     // $user = \App\User::create([
     //     'name' => 'Kleber de Souza',
     //     'email' => 'kls36@hotmail.com',
     //     'password' => bcrypt('123456')
     // ]); 
     
-    //MASS UPDATE
+    /** MASS UPDATE */
     // $user = \App\User::find(21);
     // $user->update([
-    //     'name' => 'Kleber de Souza atualizado'
+    // 'name' => 'Kleber de Souza atualizado'
     // ]); // retorna true ou false 
 
     //return \App\User::all();
 
-    //Pegando uma store de um determinado Usuario
-   // $user = \App\User::find(5);
-   // return $user->store;
+    /** Pegando uma store de um determinado Usuario */
+    // $user = \App\User::find(5);
+    //return $user->store;
 
-    //Pegar os produtos de uma loja
+    /** Pegar os produtos de uma loja */
     //$loja = \App\Store::find(1);
     //return $loja->products; // $loja->products()->where('id', 9)->get(); 
 
-    //Pegar as lojas de categorias 
+    /** 
+     * ADICIONADO CATEGORIAS 
+     */ 
+    // \App\Category::create([
+    //     'name' => 'Games',
+    //     'description' => 'Categorias de games',
+    //     'slug' => 'games'
+    // ]);
 
+    // \App\Category::create([
+    //     'name' => 'Notebooks',
+    //     'description' => 'Categoria de Notebooks',
+    //     'slug' => 'notbooks'
+    // ]);    
+
+    /** 
+     *Adicionar um produto para uma categoria ou vice-versa
+     */
+    //$produto = \App\Product::find(10);
+    //adiciona um produto para uma categoria
+    //dd($produto->categories()->attach([1]));
+    //dd($produto->categories()->sync([2])); //Melhor opção...
+    //remove um produto para uma categoria
+    //dd($produto->categories()->detach([1]));    
+
+
+    return \App\Category::all();      
 });
