@@ -104,6 +104,9 @@ Route::get('/model', function () {
 
 Route::prefix('/admin')->namespace('Admin')->name('admin.')->group(function(){
 
+    /** 
+     * ROTAS PARA STORES 
+     */
     Route::prefix('stores')->name('stores.')->group(function(){
 
         Route::get('/', 'StoreController@index')->name('index');
@@ -114,6 +117,9 @@ Route::prefix('/admin')->namespace('Admin')->name('admin.')->group(function(){
         Route::get('/destroy/{store}', 'StoreController@destroy')->name('destroy');
 
     });    
+
+    /** ROTAS PARA PRODUTOS USANDO CONTROLLER COMO RECURSO */
+    Route::resource('products', 'ProductController');
 
 });
 

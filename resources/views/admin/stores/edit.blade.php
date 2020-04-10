@@ -3,7 +3,7 @@
 @section('content')
     
     <h1 class="display-4">Atualização de Loja</h1>
-    <form action="{{ route('admin.stores.updade', ['store' => $store->id]) }}" method="POST">
+    <form action="{{ route('admin.stores.update', ['store' => $store->id]) }}" method="POST">
         {{-- token de validação do formulario --}}
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
