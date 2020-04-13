@@ -5,8 +5,10 @@
     <h1 class="display-4">Create Loja</h1>
     <form action="{{ route('admin.stores.store') }}" method="POST">
         {{-- token de validação do formulario --}}
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+        @csrf
+        @method('PUT')
+        
         <div class="form-group">
             <label>Nome Loja</label>
             <input class="form-control" type="text" name="name">
