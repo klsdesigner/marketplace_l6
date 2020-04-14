@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class StoreController extends Controller
 {
     //Pagina pricipal com listagem de todas as lojas
@@ -31,8 +32,11 @@ class StoreController extends Controller
         $data = $request->all();
 
         //busca o usuario de acordo com o usuario do request
-        $user = \App\User::find($data['user']);
+        //$user = \App\User::find($data['user']);
 
+        //Pego o usuario autenticado
+        $user = auth()->user();
+   
         //Cria a loja de acordo com o usuario
         $store = $user->store()->create($data);
 

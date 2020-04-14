@@ -6,8 +6,7 @@
     <form action="{{ route('admin.stores.store') }}" method="POST">
         {{-- token de validação do formulario --}}
         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
-        @csrf
-        @method('PUT')
+        @csrf        
         
         <div class="form-group">
             <label>Nome Loja</label>
@@ -34,14 +33,14 @@
             <input class="form-control" type="text" name="slug">
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Usuário</label>
             <select class="form-control" name="user" id="user">
             @foreach ($users as $user)
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach
             </select>    
-        </div>
+        </div> --}}
         
         <div class="form-group">
             <button class="btn btn-success" type="submit"> Criar Loja</button>
