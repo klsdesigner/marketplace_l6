@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRequest;
 use Illuminate\Http\Request;
 
 
@@ -26,7 +27,7 @@ class StoreController extends Controller
     }
 
     /**Metodo para Receber e cria uma nova Loja */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         //Recebe os dados do formulario
         $data = $request->all();
@@ -56,7 +57,7 @@ class StoreController extends Controller
 
 
     /** Metodo para realização da edição */
-    public function update(Request $request, $store)
+    public function update(StoreRequest $request, $store)
     {
         $data = $request->all();
 
