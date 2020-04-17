@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <h1 class="display-4">Listagem de Lojas</h1>
+    <h1 class="display-4 mb-4">Listagem de Lojas</h1>
 
-    <a href="{{ route('admin.stores.create') }}" class="btn btn-success btn-lg">CRIAR LOJA</a>
+    @if (!$store)
+        <a href="{{ route('admin.stores.create') }}" class="btn btn-success btn-lg mb-4">CRIAR LOJA</a>    
+    @endif    
     
     <table class="table table-striped table-hover table-sm">
         <thead class="thead-dark">
@@ -15,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($stores as $store)
+            {{-- @foreach ($stores as $store) --}}
                 <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
@@ -32,10 +34,11 @@
                         </div>
                     </td>
                 </tr>
-            @endforeach 
+            {{-- @endforeach  --}}
         </tbody>
     </table>
 
-    {{ $stores->links() }}
+    {{-- paginação --}}
+    {{-- {{ $stores->links() }} --}}
 
 @endsection

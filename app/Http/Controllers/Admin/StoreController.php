@@ -9,17 +9,32 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+
+    //Costrutor para Middleware user.has.store
+    public function __construct()
+    {
+        /** 
+         * Controla a verificação para existencia de loja para usuarios se não existira continua.
+         * only() ou except() 
+         */
+        $this->middleware('user.has.store')->only(['create', 'store']); 
+    }
+
     //Pagina pricipal com listagem de todas as lojas
     public function index()
     {
         //$stores = \App\Store::all(); // listagem total sem paginação
-        $stores = \App\Store::paginate(10); //listagem com paginação
-        return  view('admin.stores.index', compact('stores'));
+        //$stores = \App\Store::paginate(10); //listagem com paginação
+
+        $store = auth()->user()->store;
+
+        return  view('admin.stores.index', compact('store'));
     }
 
     /** Metodo para Chamada do formulario de cadastro para lojas */
     public function create()
     {
+        
         //busca todos os id e nomes dos usuários
         $users = \App\User::all(['id', 'name']);
 
