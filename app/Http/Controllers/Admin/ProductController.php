@@ -56,7 +56,8 @@ class ProductController extends Controller
         //Recebe os dados do formulario
         $data = $request->all();
 
-        $store = \App\Store::find($data['store']);
+        //$store = \App\Store::find($data['store']);
+        $store = auth()->user()->store;
         $store->products()->create($data);
 
         flash('Produto Criado com sucesso!')->success();

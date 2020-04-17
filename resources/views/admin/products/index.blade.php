@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <h1 class="display-4">Listagem de Produtos</h1>
+    <h1 class="display-4 mb-4">Listagem de Produtos</h1>
 
-    <a href="{{ route('admin.products.create') }}" class="btn btn-success btn-lg">NOVO PRODUTO</a>
+    <a href="{{ route('admin.products.create') }}" class="btn btn-success btn-lg mb-4">NOVO PRODUTO</a>
     
     <table class="table table-striped table-hover table-sm">
         <thead class="thead-dark">

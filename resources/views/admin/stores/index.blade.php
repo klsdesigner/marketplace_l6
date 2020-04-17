@@ -13,6 +13,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Total Produtos</th>
                 <th>ações</th>
             </tr>
         </thead>
@@ -21,6 +22,7 @@
                 <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
+                    <td>{{ $store->products->count() }}</td>
                     <td>      
                         <div class="btn-group">                  
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.stores.edit', ['store' => $store->id]) }}">EDITAR</a>
