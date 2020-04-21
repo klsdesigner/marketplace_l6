@@ -17,7 +17,7 @@ class UserHasStoreMiddleware
     {
 
         //Verifica se ja existe loja para usuario
-        if (auth()->user()->store()->count()) {
+        if (auth()->user()->store->count()) {
 
             flash('Já existe uma loja cadastrada para esse usuário!')->warning();
             return redirect()->route('admin.stores.index');

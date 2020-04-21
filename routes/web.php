@@ -10,19 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
- //use Illuminate\Routing\Route;
-
+ 
 use App\Product;
+//use Illuminate\Routing\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/model', function () {   
-    
+Route::get('/model', function () {       
     //$products = \App\Product::all(); // select * form products
     //return $products;
-
     /****************** 
     ** ACTIVE RECORD **
     *******************/
@@ -31,20 +29,15 @@ Route::get('/model', function () {
     // $user->name = "Kleber"; 
     // $user->email = "kls36@hotmail.com"; 
     // $user->password = bcrypt("123456"); 
-
     //Editar
     // $user =  new \App\User::find(1);
     // $user->name = "Kleber de Souza"; 
     // $user->save(); 
-
-
     // \App\User::all(); //retorna todos os dados
     // \App\User::find(3); //retorna um unico dado
-
     // equivale a um SELECT * FROM users WHERE name = 'Simone Cartwright'
     // \App\User::where('name', 'Simone Cartwright')->first(); // ou ->get()
     // \App\User::paginate(10); // retorno com paginação
-
     /*
     ********************************************* 
     *** MASS ASSIGNMENT - ATIBUIÇÃO EM MASSA ****
@@ -55,24 +48,19 @@ Route::get('/model', function () {
     //     'name' => 'Kleber de Souza',
     //     'email' => 'kls36@hotmail.com',
     //     'password' => bcrypt('123456')
-    // ]); 
-    
+    // ]);     
     /** MASS UPDATE */
     // $user = \App\User::find(21);
     // $user->update([
     // 'name' => 'Kleber de Souza atualizado'
     // ]); // retorna true ou false 
-
     //return \App\User::all();
-
     /** Pegando uma store de um determinado Usuario */
     // $user = \App\User::find(5);
     //return $user->store;
-
     /** Pegar os produtos de uma loja */
     //$loja = \App\Store::find(1);
     //return $loja->products; // $loja->products()->where('id', 9)->get(); 
-
     /** 
      * ADICIONADO CATEGORIAS 
      */ 
@@ -81,13 +69,11 @@ Route::get('/model', function () {
     //     'description' => 'Categorias de games',
     //     'slug' => 'games'
     // ]);
-
     // \App\Category::create([
     //     'name' => 'Notebooks',
     //     'description' => 'Categoria de Notebooks',
     //     'slug' => 'notbooks'
     // ]);    
-
     /** 
      *Adicionar um produto para uma categoria ou vice-versa
      */
@@ -96,13 +82,12 @@ Route::get('/model', function () {
     //dd($produto->categories()->attach([1]));
     //dd($produto->categories()->sync([2])); //Melhor opção...
     //remove um produto para uma categoria
-    //dd($produto->categories()->detach([1]));    
-
-
+    //dd($produto->categories()->detach([1])); 
     return \App\Category::all();      
 });
 
-Route::group(['middleware' => ['auth']], function () {
+
+ Route::group(['middleware' => ['auth']], function () {
     
     Route::prefix('/admin')->namespace('Admin')->name('admin.')->group(function(){
 
@@ -117,15 +102,16 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/update/{store}', 'StoreController@update')->name('updade');
             Route::get('/destroy/{store}', 'StoreController@destroy')->name('destroy');
         }); */   
-        Route::resource('stores', 'StoreController');
-    
+        Route::resource('stores', 'StoreController');    
         /** ROTAS PARA PRODUTOS USANDO CONTROLLER COMO RECURSO */
         Route::resource('products', 'ProductController');
-    
+        /** ROTAS PARA CATEGORIAS USANDO CONTROLLER COMO RECURSO */
+        Route::resource('categories', 'CategoryController');
+
     });
 
 });
 
-Auth::routes();
+ Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+ //Route::get('/home', 'HomeController@index')->name('home');
