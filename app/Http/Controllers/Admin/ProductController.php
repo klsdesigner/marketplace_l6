@@ -26,7 +26,13 @@ class ProductController extends Controller
     public function index()
     {
         //busca todos os produtos e faz o retorno para a view com a paginação
-        $products = $this->product->paginate(10);
+        //$products = $this->product->paginate(10);
+
+        //Busca a loja do uruario authenticado
+        $userStore = auth()->user()->store;
+
+        // Busca todos os produtos da loja do usuario authenticado
+        $products = $userStore->products()->paginate(10);
 
         return view('admin.products.index', compact('products'));
 
@@ -40,9 +46,12 @@ class ProductController extends Controller
     public function create()
     {
         //Busca e retorna para views todos os ids e nomes das lojas cadastradas
-        $stores = \App\Store::all(['id', 'name']);
+        //$stores = \App\Store::all(['id', 'name']);
 
-        return view('admin.products.create', compact('stores'));
+        //Busca todas a categorias 
+        $categories = \App\Category::all(['id', 'name']);
+
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -58,7 +67,10 @@ class ProductController extends Controller
 
         //$store = \App\Store::find($data['store']);
         $store = auth()->user()->store;
-        $store->products()->create($data);
+        $product = $store->products()->create($data);
+
+        //Ligação N:N no banco
+        $product->categories()->sync($data['categories']);
 
         flash('Produto Criado com sucesso!')->success();
         return redirect()->route('admin.products.index');
@@ -84,8 +96,10 @@ class ProductController extends Controller
     public function edit($product)
     {
         $product = $this->product->findOrFail($product);
+        //Busca todas a categorias 
+        $categories = \App\Category::all(['id', 'name']);
 
-        return view('admin.products.edit', compact('product'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -101,6 +115,9 @@ class ProductController extends Controller
 
         $product = $this->product->find($product);
         $product->update($data);
+
+        //Ligação N:N no banco
+        $product->categories()->sync($data['categories']);
 
         flash('Produto Atualizado com sucesso!')->success();
         return redirect()->route('admin.products.index');

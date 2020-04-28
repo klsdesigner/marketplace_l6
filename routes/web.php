@@ -106,7 +106,7 @@ Route::get('/model', function () {
         /** ROTAS PARA PRODUTOS USANDO CONTROLLER COMO RECURSO */
         Route::resource('products', 'ProductController');
         /** ROTAS PARA CATEGORIAS USANDO CONTROLLER COMO RECURSO */
-        Route::resource('categories', 'CategoryController');
+        Route::resource('categories', 'CategoryController');        
 
     });
 
