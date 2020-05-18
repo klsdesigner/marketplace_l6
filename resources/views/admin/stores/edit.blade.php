@@ -3,7 +3,7 @@
 @section('content')
     
     <h1 class="display-4">Atualização de Loja</h1>
-    <form action="{{ route('admin.stores.update', ['store' => $store->id]) }}" method="POST">
+    <form action="{{ route('admin.stores.update', ['store' => $store->id]) }}" method="POST" enctype="multipart/form-data">
         {{-- token de validação do formulario --}}
         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
         @csrf
@@ -51,6 +51,14 @@
                 {{$message}}
             </div>
             @enderror
+        </div>
+
+        <div class="form-group">
+            <p>
+                <img src="{{ asset('storage/' . $store->logo) }}" alt="">
+            </p>
+            <label>Logo da Loja</label>
+            <input type="file" name="logo" class="form-control">
         </div>
 
         <div class="form-group">

@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Traits\UploadTrait;
 
 class ProductController extends Controller
 {
+
+    /** Usa da Uploadtrait */
+    use UploadTrait;
+
     /** Atributo pra produtct */
     private $product;
 
@@ -72,6 +77,16 @@ class ProductController extends Controller
         //Ligação N:N no banco
         $product->categories()->sync($data['categories']);
 
+        //Verifico se exite images para upload
+        if ($request->hasFile('photos')) {
+            
+            $images = $this->imageUpload($request->file('photos'), 'image');
+
+            //Faz a inserção das images/referencias no banco
+            $product->photos()->createMany($images); 
+
+        }
+
         flash('Produto Criado com sucesso!')->success();
         return redirect()->route('admin.products.index');
     }
@@ -119,6 +134,16 @@ class ProductController extends Controller
         //Ligação N:N no banco
         $product->categories()->sync($data['categories']);
 
+        //Verifico se exite images para upload
+        if ($request->hasFile('photos')) {
+            
+            $images = $this->imageUpload($request->file('photos'), 'image');
+
+            //Faz a inserção das images/referencias no banco
+            $product->photos()->createMany($images); 
+
+        }
+
         flash('Produto Atualizado com sucesso!')->success();
         return redirect()->route('admin.products.index');
     }
@@ -137,4 +162,6 @@ class ProductController extends Controller
         flash('Produto Removido com sucesso!')->success();
         return redirect()->route('admin.products.index');
     }
+
+
 }

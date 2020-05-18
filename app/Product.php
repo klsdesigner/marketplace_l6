@@ -31,6 +31,15 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+    
+    /**
+     * Ligação de 1:N onde um produto tem varias images
+     */
+    public function photos()
+    {
+        //ProductPhotos::class
+        return $this->hasMany(ProductPhoto::class);
+    }
 
 
 }

@@ -27,7 +27,8 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'description' => 'required|min:30',
             'body' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'photos' => 'image'
         ];
     }
 
@@ -35,7 +36,8 @@ class ProductRequest extends FormRequest
     {
         return [
             'required' => 'O campo :attribute é obrigatório!',
-            'min' => 'O Campo deve ter no mínimo :min caracteres!'
+            'min' => 'O Campo deve ter no mínimo :min caracteres!',
+            'image' => 'Arquivo não é uma imagem válida!!'
         ];
     }
     

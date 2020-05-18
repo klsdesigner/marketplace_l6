@@ -12,7 +12,8 @@
 */
  
 use App\Product;
-//use Illuminate\Routing\Route;
+
+//  use Illuminate\Routing\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -106,7 +107,10 @@ Route::get('/model', function () {
         /** ROTAS PARA PRODUTOS USANDO CONTROLLER COMO RECURSO */
         Route::resource('products', 'ProductController');
         /** ROTAS PARA CATEGORIAS USANDO CONTROLLER COMO RECURSO */
-        Route::resource('categories', 'CategoryController');        
+        Route::resource('categories', 'CategoryController');      
+        
+        /** ROTA PARA REMOÇÃO DE IMAGENS DOS PRODUTOS */
+        Route::post('photo/remove', 'ProductPhotoController@removePhoto')->name('photo.remove');
 
     });
 
