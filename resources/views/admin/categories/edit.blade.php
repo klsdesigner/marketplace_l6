@@ -18,10 +18,10 @@
             <input class="form-control" type="text" name="description" value="{{ $category->description }}">            
         </div>
         
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Slug</label>
             <input class="form-control" type="text" name="slug" value="{{ $category->slug }}">
-        </div>
+        </div> --}}
         
         <div class="form-group">
             <button class="btn btn-success" type="submit"> Atualizar Categoria</button>

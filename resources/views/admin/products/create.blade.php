@@ -62,7 +62,7 @@
 
         <div class="form-group">
             <label>Fotos do Produto</label>
-            <input type="file" name="photos[]" class="form-control @error('photos') is-invalid @enderror" multiple>
+            <input type="file" name="photos[]" class="form-control @error('photos.*') is-invalid @enderror" multiple>
 
             @error('photos')
                 <div class="invalid-feedback">
@@ -72,10 +72,10 @@
         </div>
 
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Slug</label>
             <input class="form-control" type="text" name="slug">
-        </div>
+        </div> --}}
 
         {{-- <div class="form-group">
             <label>Lojas</label>

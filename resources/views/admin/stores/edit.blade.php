@@ -61,10 +61,10 @@
             <input type="file" name="logo" class="form-control">
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Slug</label>
             <input class="form-control" type="text" name="slug" value="{{ $store->slug }}">
-        </div>
+        </div> --}}
                
         <div class="form-group">
             <button class="btn btn-primary" type="submit"> Atualizar Loja</button>

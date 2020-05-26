@@ -70,12 +70,15 @@ class ProductController extends Controller
         //Recebe os dados do formulario
         $data = $request->all();
 
+        //Se não existir categorias passa nulo
+        $categories =  $request->get('categories', null);
+
         //$store = \App\Store::find($data['store']);
         $store = auth()->user()->store;
         $product = $store->products()->create($data);
 
         //Ligação N:N no banco
-        $product->categories()->sync($data['categories']);
+        $product->categories()->sync($categories);
 
         //Verifico se exite images para upload
         if ($request->hasFile('photos')) {
@@ -128,11 +131,16 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        //Se não existir categorias passa nulo
+        $categories =  $request->get('categories', null);
+
         $product = $this->product->find($product);
         $product->update($data);
 
-        //Ligação N:N no banco
-        $product->categories()->sync($data['categories']);
+        if (!is_null($categories))                   
+            //Ligação N:N no banco
+            $product->categories()->sync($categories);
+        
 
         //Verifico se exite images para upload
         if ($request->hasFile('photos')) {
