@@ -13,11 +13,10 @@
  
 use App\Product;
 
-//  use Illuminate\Routing\Route;
+//Rota para frontend
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/product/{slug}', 'HomeController@single')->name('product.single');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
 Route::get('/model', function () {       
     //$products = \App\Product::all(); // select * form products
